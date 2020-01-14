@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, Modal, Text, TouchableHighlight, View } from 'react-native';
+import { PropTypes } from 'prop-types';
 
 const ImageModal = ({animationType, transparent, visible, onRequestClose, setModalVisible, item}) => {
   return (
@@ -27,6 +28,15 @@ const ImageModal = ({animationType, transparent, visible, onRequestClose, setMod
       </View>
     </Modal>
   );
+};
+
+ImageModal.propTypes = {
+  animationType: PropTypes.string,
+  transparent: PropTypes.bool,
+  visible: PropTypes.bool,
+  onRequestClose: PropTypes.func,
+  setModalVisible: PropTypes.func,
+  item: PropTypes.object,
 };
 
 export default ImageModal;
