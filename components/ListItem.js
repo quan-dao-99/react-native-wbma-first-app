@@ -1,4 +1,4 @@
-import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { Component } from "react";
 import { PropTypes } from 'prop-types';
 import ImageModal from "./ImageModal";
@@ -20,13 +20,13 @@ class ListItem extends Component {
       <React.Fragment>
         <TouchableOpacity onPress={() => {
           this.setModalVisible(true)
-        }}>
+        }} style={styles.container}>
           <Image
-            style={{width: 100, height: 100}}
             source={{uri: mediaUrl + singleMedia.thumbnails.w160}}
+            style={styles.image}
           />
-          <View>
-            <Text>{singleMedia.title}</Text>
+          <View style={styles.textBox}>
+            <Text style={styles.title}>{singleMedia.title}</Text>
             <Text>{singleMedia.description}</Text>
           </View>
         </TouchableOpacity>
@@ -44,6 +44,32 @@ class ListItem extends Component {
     )
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    minHeight: 300,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'grey',
+    marginBottom: 20,
+  },
+  image: {
+    flex: 1,
+    margin: 15,
+    borderRadius: 10,
+    marginRight: 0,
+    resizeMode: 'contain'
+  },
+  textBox: {
+    flex: 1,
+    margin: 15
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  }
+});
+
 
 ListItem.propTypes = {
   singleMedia: PropTypes.object,
