@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 15,
     borderRadius: 10,
-    marginRight: 0
+    marginRight: 0,
+    resizeMode: 'contain'
   },
   textBox: {
     flex: 1,
