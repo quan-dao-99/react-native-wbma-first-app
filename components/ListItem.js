@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { PropTypes } from 'prop-types';
 import ImageModal from "./ImageModal";
 
+const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
+
 class ListItem extends Component {
   state = {
     modalVisible: false,
@@ -21,7 +23,7 @@ class ListItem extends Component {
         }}>
           <Image
             style={{width: 100, height: 100}}
-            source={{uri: singleMedia.thumbnails.w160}}
+            source={{uri: mediaUrl + singleMedia.thumbnails.w160}}
           />
           <View>
             <Text>{singleMedia.title}</Text>

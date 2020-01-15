@@ -1,12 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import List from "./components/List";
 import { MediaProvider } from "./contexts/MediaContext";
 
 const App = () => {
   return (
     <MediaProvider>
-      <List/>
+      <View style={styles}>
+        <List/>
+      </View>
     </MediaProvider>
   );
 };

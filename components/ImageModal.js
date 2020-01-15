@@ -2,6 +2,8 @@ import React from 'react';
 import { Image, Modal, Text, TouchableHighlight, View } from 'react-native';
 import { PropTypes } from 'prop-types';
 
+const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
+
 const ImageModal = ({animationType, transparent, visible, onRequestClose, setModalVisible, item}) => {
   return (
     <Modal
@@ -13,7 +15,7 @@ const ImageModal = ({animationType, transparent, visible, onRequestClose, setMod
         <View>
           <Image
             style={{width: 100, height: 100}}
-            source={{uri: item.thumbnails.w160}}
+            source={{uri: mediaUrl + item.filename}}
           />
           <View>
             <Text>{item.title}</Text>
