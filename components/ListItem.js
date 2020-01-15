@@ -20,11 +20,11 @@ class ListItem extends Component {
           this.setModalVisible(true)
         }} style={styles.container}>
           <Image
-            style={{width: 100, height: 100}}
+            style={styles.image}
             source={{uri: singleMedia.thumbnails.w160}}
           />
-          <View>
-            <Text>{singleMedia.title}</Text>
+          <View style={styles.textBox}>
+            <Text style={styles.title}>{singleMedia.title}</Text>
             <Text>{singleMedia.description}</Text>
           </View>
         </TouchableOpacity>
@@ -49,6 +49,21 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: 'grey',
+    marginBottom: 20,
+  },
+  image: {
+    flex: 1,
+    margin: 15,
+    borderRadius: 10,
+    marginRight: 0
+  },
+  textBox: {
+    flex: 1,
+    margin: 15
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 });
 

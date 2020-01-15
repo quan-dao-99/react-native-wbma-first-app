@@ -1,4 +1,4 @@
-import { FlatList } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import ListItem from './ListItem';
 import React, { useContext } from 'react';
 import { MediaContext } from '../contexts/MediaContext';
@@ -15,8 +15,16 @@ const List = () => {
       data={media}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({item}) => <ListItem singleMedia={item}/>}
+      style={styles.container}
     />
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 30,
+    backgroundColor: 'black'
+  }
+});
 
 export default List;
