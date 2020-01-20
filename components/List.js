@@ -23,7 +23,7 @@ const List = () => {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 30,
-    backgroundColor: 'black'
+    backgroundColor: 'white'
   }
 });
 

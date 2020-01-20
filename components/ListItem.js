@@ -48,13 +48,16 @@ const styles = StyleSheet.create({
     minHeight: 300,
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: 'grey',
+    backgroundColor: '#e9e9e9',
     marginBottom: 20,
+    elevation: 10,
+    borderWidth: 2,
+    borderColor: "#9bfffc"
   },
   image: {
     flex: 1,
     margin: 15,
-    borderRadius: 10,
+    borderRadius: 50,
     marginRight: 0,
     resizeMode: 'contain'
   },
@@ -64,7 +67,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: "bold",
+    color: "#e93f43",
   }
 });
 
