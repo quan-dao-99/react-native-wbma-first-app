@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AsyncStorage } from 'react-native';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
@@ -14,7 +15,6 @@ const getAllMedia = () => {
         const response = await fetch(apiUrl + 'media/' + item.file_id);
         return await response.json();
       }));
-      console.log('apihooks', result);
       setData(result);
       setLoading(false);
     } catch (e) {
@@ -28,4 +28,54 @@ const getAllMedia = () => {
   return [data, loading];
 };
 
-export { getAllMedia };
+const login = async (data) => {
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
+  try {
+    const response = await fetch(apiUrl + 'login', fetchOptions);
+    return await response.json();
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+const signUp = async (data) => {
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
+  try {
+    const response = await fetch(apiUrl + 'users', fetchOptions);
+    return await response.json();
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+const getLoggedInUserInfo = () => {
+  const [user, setUser] = useState({});
+
+  const fetchUrl = async () => {
+    try {
+      const response = await AsyncStorage.getItem('user');
+      setUser(JSON.parse(response));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUrl();
+  }, []);
+  return [user];
+};
+
+export { getAllMedia, login, getLoggedInUserInfo, signUp };
