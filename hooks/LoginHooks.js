@@ -1,52 +1,29 @@
 import { useState } from 'react';
 
 const useLoginForm = () => {
-  const [loginInputs, setInputs] = useState({});
-  const handleLoginUsernameChange = (text) => {
+  const [inputs, setInputs] = useState({});
+  const handleUsernameChange = (text) => {
     setInputs((inputs) =>
       ({
         ...inputs,
         username: text,
       }));
   };
-  const handleLoginPasswordChange = (text) => {
+  const handlePasswordChange = (text) => {
     setInputs((inputs) =>
       ({
         ...inputs,
         password: text,
       }));
   };
-  return {
-    handleLoginUsernameChange,
-    handleLoginPasswordChange,
-    loginInputs,
-  };
-};
-
-const useSignUpForm = () => {
-  const [signUpInputs, setInputs] = useState({});
-  const handleSignUpUsernameChange = (text) => {
-    setInputs((inputs) =>
-      ({
-        ...inputs,
-        username: text,
-      }));
-  };
-  const handleSignUpPasswordChange = (text) => {
-    setInputs((inputs) =>
-      ({
-        ...inputs,
-        password: text,
-      }));
-  };
-  const handleSignUpEmailChange = (text) => {
+  const handleEmailChange = (text) => {
     setInputs((inputs) =>
       ({
         ...inputs,
         email: text,
       }));
   };
-  const handleSignUpFullNameChange = (text) => {
+  const handleFullNameChange = (text) => {
     setInputs((inputs) =>
       ({
         ...inputs,
@@ -54,12 +31,12 @@ const useSignUpForm = () => {
       }));
   };
   return {
-    handleSignUpUsernameChange,
-    handleSignUpPasswordChange,
-    handleSignUpEmailChange,
-    handleSignUpFullNameChange,
-    signUpInputs,
+    handleUsernameChange,
+    handlePasswordChange,
+    handleEmailChange,
+    handleFullNameChange,
+    inputs,
   };
 };
 
-export { useLoginForm, useSignUpForm };
+export { useLoginForm };
