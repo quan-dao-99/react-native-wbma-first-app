@@ -78,4 +78,27 @@ const getLoggedInUserInfo = () => {
   return [user];
 };
 
-export { getAllMedia, login, getLoggedInUserInfo, signUp };
+const getUserAvatar = () => {
+  const [avatar, setAvatar] = useState({});
+
+  const fetchUrl = async () => {
+    try {
+      const user = await AsyncStorage.getItem('user');
+      const userId = JSON.parse(user).user_id;
+      console.log(userId);
+      const response = await fetch(apiUrl + `tags/avatar_${userId}`);
+      const json = await response.json();
+      setAvatar(json[0].filename);
+      // console.log(avatar);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUrl();
+  }, []);
+  return [avatar];
+};
+
+export { getAllMedia, login, getLoggedInUserInfo, signUp, getUserAvatar };

@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
-import { AsyncStorage, Button, StyleSheet, Text, View, } from 'react-native';
+import { Body, Button, Container, Content, Form, H1, Header, Left, Text, Title } from 'native-base';
+import { AsyncStorage } from 'react-native';
 import PropTypes from 'prop-types';
 import FormTextInput from "../components/FormTextInput";
 import { login, signUp } from "../hooks/APIHooks";
@@ -26,76 +27,70 @@ const Login = (props) => {
   };
 
   return (
-    <View style={styles.container}>
-      {!needSignUp && (
+    <Container>
+      <Header>
+        <Left/>
+        <Left/>
+        <Body>
+          <Title>MyApp</Title>
+        </Body>
+      </Header>
+      <Content>
         <Fragment>
-          <View style={styles.form}>
-            <Text>Login</Text>
-            <View style={styles.form}>
-              <FormTextInput
-                autoCapitalize='none'
-                placeholder='Username'
-                onChangeText={handleUsernameChange}
-              />
-              <FormTextInput
-                autoCapitalize='none'
-                placeholder='Password'
-                secureTextEntry={true}
-                onChangeText={handlePasswordChange}
-              />
-              <Button title="Log in!" onPress={loginAsync}/>
-            </View>
-          </View>
+          <H1>Login</H1>
+          <Form>
+            <FormTextInput
+              autoCapitalize='none'
+              onChangeText={handleUsernameChange}
+              label={'Username'}
+            />
+            <FormTextInput
+              autoCapitalize='none'
+              secureTextEntry={true}
+              label={'Password'}
+              onChangeText={handlePasswordChange}
+            />
+          </Form>
+          <Button info onPress={loginAsync}>
+            <Text>Log In</Text>
+          </Button>
         </Fragment>
-      )}
-      {needSignUp && (
         <Fragment>
-          <View>
-            <Text>Register</Text>
-            <View style={styles.form}>
-              <FormTextInput
-                autoCapitalize='none'
-                placeholder='Username'
-                onChangeText={handleUsernameChange}
-              />
-              <FormTextInput
-                autoCapitalize='none'
-                placeholder='Password'
-                secureTextEntry={true}
-                onChangeText={handlePasswordChange}
-              />
-              <FormTextInput
-                autoCapitalize='none'
-                placeholder='Email'
-                onChangeText={handleEmailChange}
-              />
-              <FormTextInput
-                autoCapitalize='none'
-                placeholder='Full Name'
-                onChangeText={handleFullNameChange}
-              />
-              <Button title="Sign Up!" onPress={signUpAsync}/>
-            </View>
-          </View>
+          <H1>Register</H1>
+          <Form>
+            <FormTextInput
+              autoCapitalize='none'
+              label={'Username'}
+              onChangeText={handleUsernameChange}
+            />
+            <FormTextInput
+              autoCapitalize='none'
+              label={'Password'}
+              secureTextEntry={true}
+              onChangeText={handlePasswordChange}
+            />
+            <FormTextInput
+              autoCapitalize='none'
+              label={'Email'}
+              onChangeText={handleEmailChange}
+            />
+            <FormTextInput
+              autoCapitalize='none'
+              label={'Full Name'}
+              onChangeText={handleFullNameChange}
+            />
+          </Form>
+          <Button info onPress={signUpAsync}>
+            <Text>Sign Up</Text>
+          </Button>
         </Fragment>
-      )}
-      <Button title={needSignUp ? "Login?" : "Need to sign up?"} onPress={changeNeedSignUp}/>
-    </View>
+        {/*<Button info onPress={changeNeedSignUp}>*/}
+        {/*  <Text>{needSignUp ? "Back to login?" : "Need to sign up?"}</Text>*/}
+        {/*</Button>*/}
+      </Content>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    form: {
-      marginBottom: 30,
-    }
-  })
-;
 
 Login.propTypes = {
   navigation: PropTypes.object,

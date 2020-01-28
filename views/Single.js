@@ -1,48 +1,32 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'react-native';
+import { Body, Card, CardItem, Container, Icon, Text } from 'native-base';
 
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
 const Single = (props) => {
   const {navigation} = props;
-  const singleMedia = navigation.getParam('item', 'default');
+  const singleMedia = navigation.getParam('item', {});
 
   return (
-    <React.Fragment>
-      <Image
-        source={{uri: mediaUrl + singleMedia.filename}}
-        style={styles.image}
-      />
-      <View style={styles.textBox}>
-        <Text style={styles.title}>{singleMedia.title}</Text>
-        <Text>{singleMedia.description}</Text>
-      </View>
-    </React.Fragment>
+    <Container>
+      <Card>
+        <CardItem bordered>
+          <Image
+            source={{uri: mediaUrl + singleMedia.filename}}
+            style={{width: null, height: 400, flex: 1, marginLeft: 20, marginRight: 20, resizeMode: 'contain'}}
+          />
+        </CardItem>
+        <CardItem>
+          <Icon name="image"/>
+          <Body>
+            <Text>{singleMedia.title}</Text>
+            <Text>{singleMedia.description}</Text>
+          </Body>
+        </CardItem>
+      </Card>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    minHeight: 300,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'grey',
-    marginBottom: 20,
-  },
-  image: {
-    flex: 1,
-    margin: 15,
-    marginRight: 0,
-    resizeMode: 'contain'
-  },
-  textBox: {
-    flex: 1,
-    margin: 15
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold'
-  }
-});
 
 export default Single;

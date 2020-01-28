@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View } from 'native-base';
 import List from "../components/List";
 
 const Home = (props) => {
