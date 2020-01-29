@@ -17,13 +17,14 @@ const Login = (props) => {
     handleFullNameChange,
     handleConfirmPasswordChange,
     validateForm,
+    validateLoginForm,
     validateField,
     setErrors,
     resetErrors,
   } = useLoginForm();
 
   const loginAsync = async () => {
-    const validation = validateForm();
+    const validation = validateLoginForm();
     if (validation === true) {
       const user = await login(inputs);
       if (user) {
@@ -38,7 +39,6 @@ const Login = (props) => {
   const signUpAsync = async () => {
     const validation = validateForm();
     if (validation === true) {
-      // console.log(validation);
       await signUp(inputs);
       await loginAsync();
     }

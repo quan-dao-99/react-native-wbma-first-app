@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 const FormTextInput = (props) => {
   const {errors, ...otherProps} = props;
-  console.log('errors', errors);
   return (
     <Content>
       <Item>

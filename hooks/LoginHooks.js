@@ -99,6 +99,11 @@ const useLoginForm = () => {
     if (!check) return true;
     return check;
   };
+  const validateLoginForm = () => {
+    const check = validate(inputs, constraints);
+    if (!check.username && !check.password) return true;
+    return check;
+  };
   const resetErrors = () => {
     setErrors(defaultErrors);
   };
@@ -109,6 +114,7 @@ const useLoginForm = () => {
     handleFullNameChange,
     handleConfirmPasswordChange,
     validateForm,
+    validateLoginForm,
     validateField,
     inputs,
     errors,
