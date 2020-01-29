@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Root } from 'native-base';
 import { MediaProvider } from './contexts/MediaContext';
 import Navigator from './navigators/Navigator';
 import * as Expo from "expo";
@@ -25,9 +26,11 @@ const App = () => {
   }
 
   return (
-    <MediaProvider>
-      <Navigator/>
-    </MediaProvider>
+    <Root>
+      <MediaProvider>
+        <Navigator/>
+      </MediaProvider>
+    </Root>
   );
 };
 

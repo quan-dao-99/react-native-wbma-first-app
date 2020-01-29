@@ -101,4 +101,14 @@ const getUserAvatar = () => {
   return [avatar];
 };
 
-export { getAllMedia, login, getLoggedInUserInfo, signUp, getUserAvatar };
+const checkUsernameExist = async (username) => {
+  try {
+    const response = await fetch(apiUrl + `users/username/${username}`);
+    const json = await response.json();
+    return json.available;
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+export { getAllMedia, login, getLoggedInUserInfo, signUp, getUserAvatar, checkUsernameExist };
