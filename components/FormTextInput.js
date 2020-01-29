@@ -1,13 +1,12 @@
 import React from 'react';
-import { Input, Item, Label } from 'native-base';
+import { Input, Item } from 'native-base';
 import PropTypes from 'prop-types';
 
 
 const FormTextInput = (props) => {
-  const {label, ...otherProps} = props;
+  const {...otherProps} = props;
   return (
     <Item inlineLabel>
-      <Label>{label}</Label>
       <Input {...otherProps}/>
     </Item>
   );

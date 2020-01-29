@@ -10,6 +10,7 @@ const Login = (props) => {
   const [error, setError] = useState('');
   const [needSignUp, setNeedSignUp] = useState(false);
   const {inputs, handleUsernameChange, handlePasswordChange, handleEmailChange, handleFullNameChange} = useLoginForm();
+
   const loginAsync = async () => {
     const user = await login(inputs);
 
@@ -55,12 +56,12 @@ const Login = (props) => {
               <FormTextInput
                 autoCapitalize='none'
                 onChangeText={handleUsernameChange}
-                label={'Username'}
+                placeholder={'Username'}
               />
               <FormTextInput
                 autoCapitalize='none'
                 secureTextEntry={true}
-                label={'Password'}
+                placeholder={'Password'}
                 onChangeText={handlePasswordChange}
               />
             </Form>
@@ -75,24 +76,24 @@ const Login = (props) => {
             <Form>
               <FormTextInput
                 autoCapitalize='none'
-                label={'Username'}
+                placeholder={'Username'}
                 onChangeText={handleUsernameChange}
                 onEndEditing={checkRegisterUsernameExist}
               />
               <FormTextInput
                 autoCapitalize='none'
-                label={'Password'}
+                placeholder={'Password'}
                 secureTextEntry={true}
                 onChangeText={handlePasswordChange}
               />
               <FormTextInput
                 autoCapitalize='none'
-                label={'Email'}
+                placeholder={'Email'}
                 onChangeText={handleEmailChange}
               />
               <FormTextInput
                 autoCapitalize='none'
-                label={'Full Name'}
+                placeholder={'Full Name'}
                 onChangeText={handleFullNameChange}
               />
             </Form>
