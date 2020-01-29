@@ -1,14 +1,20 @@
 import React from 'react';
-import { Input, Item } from 'native-base';
+import { Badge, Content, Input, Item, Text } from 'native-base';
 import PropTypes from 'prop-types';
 
-
 const FormTextInput = (props) => {
-  const {...otherProps} = props;
+  const {errors, ...otherProps} = props;
+  console.log('errors', errors);
   return (
-    <Item inlineLabel>
-      <Input {...otherProps}/>
-    </Item>
+    <Content>
+      <Item>
+        <Input {...otherProps}/>
+      </Item>
+      {(errors && (
+        <Badge>
+          <Text>{errors}</Text>
+        </Badge>))}
+    </Content>
   );
 };
 

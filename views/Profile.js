@@ -34,7 +34,7 @@ const Profile = (props) => {
           </Body>
         </CardItem>
         <CardItem>
-          <Button info onPress={signOutAsync}>
+          <Button full info onPress={signOutAsync}>
             <Text>Logout</Text>
           </Button>
         </CardItem>
