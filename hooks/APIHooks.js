@@ -85,7 +85,6 @@ const getUserAvatar = () => {
     try {
       const user = await AsyncStorage.getItem('user');
       const userId = JSON.parse(user).user_id;
-      console.log(userId);
       const response = await fetch(apiUrl + `tags/avatar_${userId}`);
       const json = await response.json();
       setAvatar(json[0].filename);

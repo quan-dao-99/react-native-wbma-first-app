@@ -8,11 +8,13 @@ import AuthLoading from "../views/AuthLoading";
 import Login from "../views/Login";
 import React from 'react';
 import { Icon } from 'native-base';
+import Upload from "../views/Upload";
 
 const TabNavigator = createBottomTabNavigator(
   {
     Home,
     Profile,
+    Upload,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -23,6 +25,8 @@ const TabNavigator = createBottomTabNavigator(
           iconName = 'home';
         } else if (routeName === 'Profile') {
           iconName = 'person';
+        } else if (routeName === 'Upload') {
+          iconName = 'cloud-upload';
         }
         return <Icon
           name={iconName}
@@ -57,6 +61,9 @@ const StackNavigator = createStackNavigator(
     Logout: {
       screen: Login,
     },
+    Upload: {
+      screen: Upload,
+    }
   },
 );
 
