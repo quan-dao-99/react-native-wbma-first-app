@@ -12,6 +12,10 @@ const Profile = (props) => {
     props.navigation.navigate('Auth');
   };
 
+  const showMyFiles = () => {
+    props.navigation.push('MyFiles');
+  };
+
   const [user] = getLoggedInUserInfo();
   const [avatar] = getUserAvatar();
 
@@ -33,11 +37,12 @@ const Profile = (props) => {
             <Text>Email: {user.email}</Text>
           </Body>
         </CardItem>
-        <CardItem>
-          <Button full info onPress={signOutAsync}>
-            <Text>Logout</Text>
-          </Button>
-        </CardItem>
+        <Button full info onPress={showMyFiles}>
+          <Text>Show my files</Text>
+        </Button>
+        <Button full danger onPress={signOutAsync}>
+          <Text>Logout</Text>
+        </Button>
       </Card>
     </Container>
   );

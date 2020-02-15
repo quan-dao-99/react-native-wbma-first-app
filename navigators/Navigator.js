@@ -9,12 +9,14 @@ import Login from "../views/Login";
 import React from 'react';
 import { Icon } from 'native-base';
 import Upload from "../views/Upload";
+import MyFiles from "../views/MyFiles";
+import ModifyPostInfo from "../views/ModifyPostInfo";
 
 const TabNavigator = createBottomTabNavigator(
   {
     Home,
-    Profile,
     Upload,
+    Profile,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -26,7 +28,7 @@ const TabNavigator = createBottomTabNavigator(
         } else if (routeName === 'Profile') {
           iconName = 'person';
         } else if (routeName === 'Upload') {
-          iconName = 'cloud-upload';
+          iconName = 'add';
         }
         return <Icon
           name={iconName}
@@ -63,6 +65,12 @@ const StackNavigator = createStackNavigator(
     },
     Upload: {
       screen: Upload,
+    },
+    MyFiles: {
+      screen: MyFiles,
+    },
+    ModifyPostInfo: {
+      screen: ModifyPostInfo,
     }
   },
 );

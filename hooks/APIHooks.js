@@ -87,8 +87,8 @@ const getUserAvatar = () => {
       const userId = JSON.parse(user).user_id;
       const response = await fetch(apiUrl + `tags/avatar_${userId}`);
       const json = await response.json();
+      console.log('json avatar', json);
       setAvatar(json[0].filename);
-      // console.log(avatar);
     } catch (e) {
       console.log(e.message);
     }
@@ -110,4 +110,86 @@ const checkUsernameExist = async (username) => {
   }
 };
 
-export { getAllMedia, login, getLoggedInUserInfo, signUp, getUserAvatar, checkUsernameExist };
+const getUserInfo = (userId) => {
+  const [uploadUser, setUploadUser] = useState({});
+
+  const fetchUrl = async () => {
+    try {
+      const userToken = await AsyncStorage.getItem('userToken');
+      const fetchOptions = {
+        headers: {
+          'x-access-token': userToken,
+        },
+      };
+      const apiResponse = await fetch(apiUrl + `users/${userId}`, fetchOptions);
+      const json = await apiResponse.json();
+      setUploadUser(json);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUrl();
+  }, []);
+  return [uploadUser];
+};
+
+const getCurrentUserFiles = () => {
+  const [currentUserFiles, setCurrentUserFiles] = useState({});
+
+  const fetchUrl = async () => {
+    try {
+      const userToken = await AsyncStorage.getItem('userToken');
+      const fetchOptions = {
+        headers: {
+          'x-access-token': userToken,
+        },
+      };
+      const apiResponse = await fetch(apiUrl + 'media/user', fetchOptions);
+      const json = await apiResponse.json();
+      const result = await Promise.all(json.map(async (item) => {
+        const response = await fetch(apiUrl + 'media/' + item.file_id);
+        return await response.json();
+      }));
+      setCurrentUserFiles(result);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUrl();
+  }, []);
+  return [currentUserFiles];
+};
+
+const deleteFile = async (fileId) => {
+  try {
+    const userToken = await AsyncStorage.getItem('userToken');
+    const fetchOptions = {
+      method: 'DELETE',
+      headers: {
+        'x-access-token': userToken,
+      },
+    };
+    const apiResponse = await fetch(apiUrl + `media/${fileId}`, fetchOptions);
+    const json = await apiResponse.json();
+    console.log('json', json);
+    return json;
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+export {
+  getAllMedia,
+  login,
+  getLoggedInUserInfo,
+  signUp,
+  getUserAvatar,
+  checkUsernameExist,
+  getUserInfo,
+  getCurrentUserFiles,
+  deleteFile,
+};
